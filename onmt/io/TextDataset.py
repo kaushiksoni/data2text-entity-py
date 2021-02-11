@@ -235,7 +235,7 @@ class TextDataset(ONMTDatasetBase):
             return entities_mapping
 
         fields["entities_list"] = torchtext.data.Field(
-            use_vocab=False, tensor_type=torch.FloatTensor,
+            use_vocab=False, dtype=torch.FloatTensor,
             postprocessing=make_entities, sequential=False)
 
         def make_entities_len(data, vocab, is_train):
@@ -247,11 +247,11 @@ class TextDataset(ONMTDatasetBase):
             return entities_len_mapping
 
         fields["entities_len"] = torchtext.data.Field(
-            use_vocab=False, tensor_type=torch.FloatTensor,
+            use_vocab=False, dtype=torch.FloatTensor,
             postprocessing=make_entities_len, sequential=False)
 
         fields["count_entities"] = torchtext.data.Field(
-            use_vocab=False, tensor_type=torch.LongTensor,
+            use_vocab=False, dtype=torch.LongTensor,
             sequential=False)
 
         def make_total_entities(data, vocab, is_train):
@@ -264,7 +264,7 @@ class TextDataset(ONMTDatasetBase):
             return entities_mapping
 
         fields["total_entities_list"] = torchtext.data.Field(
-            use_vocab=False, tensor_type=torch.FloatTensor,
+            use_vocab=False, dtype=torch.FloatTensor,
             postprocessing=make_total_entities, sequential=False)
 
         fields["tgt"] = torchtext.data.Field(
@@ -286,7 +286,7 @@ class TextDataset(ONMTDatasetBase):
             return alignment
 
         fields["src_map"] = torchtext.data.Field(
-            use_vocab=False, tensor_type=torch.FloatTensor,
+            use_vocab=False, dtype=torch.FloatTensor,
             postprocessing=make_src, sequential=False)
 
         def make_tgt(data, vocab, is_train):
@@ -297,11 +297,11 @@ class TextDataset(ONMTDatasetBase):
             return alignment
 
         fields["alignment"] = torchtext.data.Field(
-            use_vocab=False, tensor_type=torch.LongTensor,
+            use_vocab=False, dtype=torch.LongTensor,
             postprocessing=make_tgt, sequential=False)
 
         fields["indices"] = torchtext.data.Field(
-            use_vocab=False, tensor_type=torch.LongTensor,
+            use_vocab=False, dtype=torch.LongTensor,
             sequential=False)
 
         return fields
