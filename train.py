@@ -462,8 +462,12 @@ def main():
     # Load checkpoint if we resume from a previous training.
     if opt.train_from:
         print('Loading checkpoint from %s' % opt.train_from)
+        if torch.cuda.is_available():
+            map_location=lambda storage, loc: storage.cuda()
+        else:
+            map_location='cpu'
         checkpoint = torch.load(opt.train_from,
-                                map_location=lambda storage, loc: storage)
+                                map_location=map_location)
         model_opt = checkpoint['opt']
         # I don't like reassigning attributes of opt: it's not clear.
         opt.start_epoch = checkpoint['epoch'] + 1
